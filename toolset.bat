@@ -10,11 +10,6 @@ rem sensitive for the Toolset version, it is possible to set the
 rem `PlatformToolset` from the `PLATFORM_TOOLSET` env var and make a project 
 rem more flexible.
 
-set batch_path=%~d0%~p0
-set vcvars_name=%1
-
-call "%batch_path%vars.bat" %vcvars_name% || exit
-
 for /f "tokens=1,2 delims=." %%i in ("%VCToolsVersion%") do (
   set XX=%%i
   set YY=%%j

@@ -13,13 +13,7 @@ rem Instead we need to call the `vcvvars*.bat` script here.
 rem VS Build Tools may be installed to a non-default path, so we use the link 
 rem at the Start menu to determine the path to the `vcvars*.bat`.
 
-set DEFAULT_NAME=x64 Native Tools Command Prompt for VS 2019
-
-if "%~1" == "" (
-  set vcvars_name=%DEFAULT_NAME%
-) else (
-  set vcvars_name=%~1
-)
+set vcvars_name=x64 Native Tools Command Prompt for VS 2019
 
 set vcvars_lnk=%ProgramData%\Microsoft\Windows\Start Menu\Programs
 set vcvars_lnk=%vcvars_lnk%\Visual Studio 2019\Visual Studio Tools\VC
