@@ -67,6 +67,5 @@ rem Call the `vcvvars` batch script.
 for /f "usebackq delims=" %%i in (`
   powershell -command "%read_link% | %find_path% | %only_match%"
 `) do (
-  call "%%i"
+  call "%%i" || exit
 )
-
