@@ -3,29 +3,65 @@
 Like the **VS Tools Command Prompt** from the Windows Start menu, but **for 
 batch scripting** rather than manual use.
 
-It allows of **VS Tools** like `cl` compiler or `msbuild` to be used in batch.
+## `vars.bat`
 
-## Example
+It allows **VS Tools** like `cl` compiler or `msbuild` to be used in batch.
 
-Will be used the "*x64 Native Tools Command Prompt for VS 2019*" by default.
+Default link is .
 
-Running of
+### Example
+
+By default uses the "*x64 Native Tools Command Prompt for VS 2019*" link name.
 
 ```batch
 call "vars.bat"
-echo %VSCMD_ARG_HOST_ARCH%
 ```
 
-gives `x64`.
+```batch
+[vcvarsall.bat] Environment initialized for: 'x64'
+```
 
-We can pass the link name.
-
-Running of
+Passing this *VCVARS* link name should change the arch.
 
 ```batch
 call "vars.bat" "x86 Native Tools Command Prompt for VS 2019"
-echo %VSCMD_ARG_HOST_ARCH%
 ```
 
-gives `x86`.
+```batch
+[vcvarsall.bat] Environment initialized for: 'x86'
+```
 
+## `toolset.bat`
+
+Calls the `vars.bat`, then sets the `PLATFORM_TOOLSET` env var.
+
+Allows to pass a *VCVARS* link name for `vars.bat` through the `toolset.bat`.
+
+### Example
+
+```batch
+call toolset.bat "x86 Native Tools Command Prompt for VS 2019"
+```
+
+```batch
+[vcvarsall.bat] Environment initialized for: 'x86'
+PLATFORM_TOOLSET is v142
+```
+
+MS Visual C++ projects have this property:
+
+```xml
+<PlatformToolset>v142</PlatformToolset>
+```
+
+Using the `PLATFORM_TOOLSET` allows to make a project more flexible:
+
+```xml
+<PlatformToolset Condition="'$(PLATFORM_TOOLSET)' == ''">
+  v142
+</PlatformToolset>
+
+<PlatformToolset Condition="'$(PLATFORM_TOOLSET)' != ''">
+  $(PLATFORM_TOOLSET)
+</PlatformToolset>
+```
