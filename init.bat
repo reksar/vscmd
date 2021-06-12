@@ -1,5 +1,7 @@
 @echo off
 
+set batch_path=%~d0%~p0
+
 :parse_args
 if not "%1" == "" (
 
@@ -18,7 +20,8 @@ if not "%1" == "" (
   goto :parse_args
 )
 
-rem Set default arch.
+rem ---------------------------------------------------------------------------
+
 if not "%x%" == "86" (
   if not "%x%" == "64" (
     set x=64
@@ -31,10 +34,10 @@ if "%x%" == "86" (
   set bits=%x%
 )
 
-set batch_path=%~d0%~p0
+rem ---------------------------------------------------------------------------
 
-call "%batch_path%vcvars.bat" "%bits%" || exit
+call "%batch_path%vcvars.bat" "%bits%" || goto :EOF
 
 if "%toolset%" == "true" (
-  call "%batch_path%toolset.bat" || exit
+  call "%batch_path%toolset.bat" || goto :EOF
 )
