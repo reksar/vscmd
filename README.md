@@ -1,10 +1,11 @@
 # vscmd
 
-## Common
+Like the **VS Tools Command Prompt** in the Windows Start menu, but **for 
+batch scripting** rather than manual use.
 
-Like the **VS Tools Command Prompt** at the Windows Start menu, but **for 
-batch scripting** rather than manual use. It allows **VS Tools** like `cl` 
-compiler or `msbuild` to be used in batch.
+## Install
+
+`install-vs` - default minimal VS Tools installation.
 
 ## Platform Toolset
 
