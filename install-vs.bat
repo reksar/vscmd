@@ -11,7 +11,7 @@ call download %URL% "%installer%"
 rem  https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-build-tools?view=vs-2022
 call "%installer%" --quiet ^
   --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 ^
-  --add Microsoft.VisualStudio.Component.Windows10SDK
+  --add Microsoft.VisualStudio.Component.Windows10SDK.20348
 
 del "%installer%"
 echo Visual Studio will finish installation silently!
